@@ -1,11 +1,21 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import FootballDataInput from './FootballDataInput';
+import { useState } from 'react';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const [currentText, setCurrentText] = useState('');
+
+  function handleCommentaryRequest() {
+    console.log('Commentary requested for: ' + currentText);
+  }
+
+  const onTextChange = (e) => {
+    setCurrentText(e.target.value);
+  };
+
   return (
     <>
       <Head>
@@ -14,7 +24,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Hello world</h1>
+
+      <FootballDataInput
+        text={currentText}
+        onCommentaryRequested={() => handleCommentaryRequest()}
+        onTextChange={onTextChange}
+      />
     </>
   );
 }
