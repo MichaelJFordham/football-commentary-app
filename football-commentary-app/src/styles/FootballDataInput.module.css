@@ -1,13 +1,10 @@
-.container {
-    padding: 40px 20%;
-}
-
 .commentaryHeading {
     margin-bottom: 8px;
 }
 
 .footballData {
     width: 100%;
+    min-height: 300px;
     margin: 24px 0 16px 0;
     padding: 12px;
     font-size: 16px;

@@ -1,0 +1,11 @@
+.commentaryText {
+    width: 100%;
+    margin: 40px 0;
+    padding: 16px;
+    font-size: 16px;
+    border: thin solid white;
+    border-radius: 4px;
+    font-family: 'Rubik', sans-serif;
+    color: white;
+    white-space: pre-wrap;
+}

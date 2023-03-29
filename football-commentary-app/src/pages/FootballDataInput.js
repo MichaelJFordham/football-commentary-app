@@ -7,29 +7,25 @@ export default function FootballDataInput({
 }) {
   return (
     <>
-      <div className={styles.container}>
-        <h1 className={styles.commentaryHeading}>
-          Generate Football Commentary
-        </h1>
-        <p>
-          Enter football data here and it will be automatically analysed and
-          turned into real commentary.
-        </p>
+      <h1 className={styles.commentaryHeading}>Generate Football Commentary</h1>
+      <p>
+        Enter football data here and it will be automatically analysed and
+        turned into real commentary.
+      </p>
 
-        <textarea
-          className={styles.footballData}
-          type="text"
-          value={text}
-          onChange={onTextChange}
-        ></textarea>
+      <textarea
+        className={styles.footballData}
+        type="text"
+        value={text}
+        onChange={onTextChange}
+      ></textarea>
 
-        <button
-          className={styles.getCommentaryBtn}
-          onClick={onCommentaryRequested}
-        >
-          Get commentary
-        </button>
-      </div>
+      <button
+        className={styles.getCommentaryBtn}
+        onClick={onCommentaryRequested}
+      >
+        Get commentary
+      </button>
     </>
   );
 }
