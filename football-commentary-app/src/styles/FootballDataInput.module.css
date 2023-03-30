@@ -10,6 +10,8 @@
     font-size: 16px;
     border-radius: 4px;
     font-family: 'Rubik', sans-serif;
+    background-color: transparent;
+    color: white;
 }
 
 .getCommentaryBtn {
