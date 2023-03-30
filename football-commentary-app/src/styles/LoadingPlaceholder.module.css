@@ -12,7 +12,7 @@
   
   .loadingSpinner {
     border: 8px solid rgba(0, 0, 0, 0.1);
-    border-top-color: #0060c7;
+    border-top-color: rgb(13, 51, 156);
     border-radius: 50%;
     width: 40px;
     height: 40px;
