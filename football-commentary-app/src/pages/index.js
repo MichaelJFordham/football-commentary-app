@@ -9,7 +9,7 @@ import LoadingPlaceholder from './LoadingPlaceholder';
 export default function Home() {
   const [currentText, setCurrentText] = useState('');
   const [currentCommentaryAnalysis, setCurrentCommentaryAnalysis] =
-    useState('');
+    useState(null);
   const [currentCommentaryAudio, setCurrentCommentaryAudio] = useState(null);
   const [commentaryRequested, setCommentaryRequested] = useState(false);
 
@@ -89,7 +89,7 @@ export default function Home() {
 
         {/* Shows loading animation until the commentary script is generated */}
         <div>
-          {currentCommentaryAnalysis.length === 0 && commentaryRequested ? (
+          {currentCommentaryAnalysis === null && commentaryRequested ? (
             <LoadingPlaceholder generationLabel={'commentary'} />
           ) : (
             <FootballCommentaryAnalysisText text={currentCommentaryAnalysis} />
@@ -98,7 +98,7 @@ export default function Home() {
 
         {/* Shows loading animation until the audio is generated */}
         <div>
-          {currentCommentaryAnalysis.length > 0 &&
+          {currentCommentaryAnalysis !== null &&
           currentCommentaryAudio === null ? (
             <LoadingPlaceholder generationLabel={'audio'} />
           ) : (
