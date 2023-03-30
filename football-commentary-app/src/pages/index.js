@@ -4,15 +4,17 @@ import FootballDataInput from './FootballDataInput';
 import { useState } from 'react';
 import FootballCommentaryAnalysisText from './FootballCommentaryAnalysisText';
 import FootballCommentaryAudio from './FootballCommentaryAudio';
+import LoadingPlaceholder from './LoadingPlaceholder';
 
 export default function Home() {
   const [currentText, setCurrentText] = useState('');
   const [currentCommentaryAnalysis, setCurrentCommentaryAnalysis] =
     useState('');
   const [currentCommentaryAudio, setCurrentCommentaryAudio] = useState(null);
+  const [commentaryRequested, setCommentaryRequested] = useState(false);
 
   function handleCommentaryRequest() {
-    console.log('Commentary requested for: ' + currentText);
+    setCommentaryRequested(true);
 
     fetch('/api/analyse-commentary', {
       method: 'POST',
@@ -23,6 +25,7 @@ export default function Home() {
     })
       .then((response) => response.json())
       .then((data) => {
+        setCommentaryRequested(false);
         setCurrentCommentaryAnalysis(data.message);
         handleCommentaryAudio(data.message);
       })
@@ -77,15 +80,31 @@ export default function Home() {
       </Head>
 
       <div className={styles.container}>
+        {/* Input field for the raw football data */}
         <FootballDataInput
           text={currentText}
           onCommentaryRequested={() => handleCommentaryRequest()}
           onTextChange={onTextChange}
         />
 
-        <FootballCommentaryAnalysisText text={currentCommentaryAnalysis} />
+        {/* Shows loading animation until the commentary script is generated */}
+        <div>
+          {currentCommentaryAnalysis.length === 0 && commentaryRequested ? (
+            <LoadingPlaceholder generationLabel={'commentary'} />
+          ) : (
+            <FootballCommentaryAnalysisText text={currentCommentaryAnalysis} />
+          )}
+        </div>
 
-        <FootballCommentaryAudio audio={currentCommentaryAudio} />
+        {/* Shows loading animation until the audio is generated */}
+        <div>
+          {currentCommentaryAnalysis.length > 0 &&
+          currentCommentaryAudio === null ? (
+            <LoadingPlaceholder generationLabel={'audio'} />
+          ) : (
+            <FootballCommentaryAudio audio={currentCommentaryAudio} />
+          )}
+        </div>
       </div>
     </>
   );

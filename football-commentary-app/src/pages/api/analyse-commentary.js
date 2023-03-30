@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: `You're an experienced football (soccer) commentator. A match has just ended. You will be given raw data about the match, and you should provide a friendly, conversational analysis of the data summarising the game.`,
+        content: `You're an experienced football (soccer) commentator. A match has just ended. You will be given raw data about the match, and you should provide a friendly, enthusiastic, conversational analysis of the data summarising the game.`,
       },
       { role: 'user', content: req.body.footballData },
     ],
